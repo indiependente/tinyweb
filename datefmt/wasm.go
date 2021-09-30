@@ -1,25 +1,26 @@
 package main
 
 import (
-	"strconv"
 	"syscall/js"
+	"time"
+)
+
+const (
+	htmlDateLayout = "2006-01-02"
 )
 
 func main() {
 }
 
-//export add
-func add(a, b int) int {
-	return a + b
+//export format
+func format(d string) string {
+	return time.Now().UTC().Format(time.RFC3339)
 }
 
 //export update
 func update() {
 	document := js.Global().Get("document")
-	aStr := document.Call("getElementById", "a").Get("value").String()
-	bStr := document.Call("getElementById", "b").Get("value").String()
-	a, _ := strconv.Atoi(aStr)
-	b, _ := strconv.Atoi(bStr)
-	result := add(a, b)
+	dd := document.Call("getElementById", "dd").Get("value").String()
+	result := format(dd)
 	document.Call("getElementById", "result").Set("value", result)
 }
