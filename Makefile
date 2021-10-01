@@ -6,8 +6,8 @@ clean:
 .PHONY: datefmt
 datefmt: clean wasm_exec
 	tinygo build -o ./html/wasm.wasm -target wasm -no-debug ./datefmt/wasm.go
-	cp ./export/wasm.js ./html/
-	cp ./export/index.html ./html/
+	cp ./datefmt/wasm.js ./html/
+	cp ./datefmt/index.html ./html/
 
 .PHONY: export
 export: clean wasm_exec
@@ -19,6 +19,12 @@ export: clean wasm_exec
 main: clean wasm_exec
 	tinygo build -o ./html/wasm.wasm -target wasm -no-debug ./main/main.go
 	cp ./main/index.html ./html/
+
+.PHONY: play
+play: clean wasm_exec
+	tinygo build -o ./html/wasm.wasm -target wasm -no-debug ./play/wasm.go
+	cp ./export/wasm.js ./html/
+	cp ./export/index.html ./html/
 
 .PHONY: run
 run: 

@@ -9,7 +9,7 @@ function updateResult() {
 }
 
 function init() {
-  document.querySelector('#n').oninput = updateResult;
+  document.querySelector('#code').oninput = updateResult;
 
   const go = new Go();
   if ('instantiateStreaming' in WebAssembly) {
